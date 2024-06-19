@@ -1,2 +1,2 @@
-# project-name
-A description
+# Orion IoT
+An experimental Internet of Things Java platform

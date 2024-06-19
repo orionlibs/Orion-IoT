@@ -1,4 +1,4 @@
-package io.github.orionlibs.project_name.config;
+package io.github.orionlibs.orion_iot.config;
 
 /**
  * provides access to the plugin's config

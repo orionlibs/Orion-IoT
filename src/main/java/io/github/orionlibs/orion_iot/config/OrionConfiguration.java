@@ -1,4 +1,4 @@
-package io.github.orionlibs.project_name.config;
+package io.github.orionlibs.orion_iot.config;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

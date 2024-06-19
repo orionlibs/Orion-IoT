@@ -1,8 +1,8 @@
-package io.github.orionlibs.project_name;
+package io.github.orionlibs.orion_iot;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.github.orionlibs.project_name.log.ListLogHandler;
+import io.github.orionlibs.orion_iot.log.ListLogHandler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
