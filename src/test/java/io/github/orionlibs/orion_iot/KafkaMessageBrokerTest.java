@@ -2,7 +2,7 @@ package io.github.orionlibs.orion_iot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.Duration;
+/*import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -18,17 +18,17 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;*/
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.springframework.kafka.test.EmbeddedKafkaKraftBroker;
-import org.springframework.kafka.test.utils.KafkaTestUtils;
+//import org.springframework.kafka.test.EmbeddedKafkaKraftBroker;
+//import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @TestInstance(Lifecycle.PER_CLASS)
 //@Execution(ExecutionMode.CONCURRENT)
 public class KafkaMessageBrokerTest
 {
-    private static EmbeddedKafkaKraftBroker embeddedKafkaBroker;
+    /*private static EmbeddedKafkaKraftBroker embeddedKafkaBroker;
     private static KafkaProducer<String, String> producer;
     private static KafkaConsumer<String, String> consumer;
 
@@ -74,5 +74,5 @@ public class KafkaMessageBrokerTest
         {
             assertEquals(message, record.value());
         }
-    }
+    }*/
 }

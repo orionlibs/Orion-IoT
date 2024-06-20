@@ -280,7 +280,7 @@
         </dependency>
 
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>3.7.0</version>
@@ -299,7 +299,7 @@
             <artifactId>spring-kafka-test</artifactId>
             <version>3.2.1</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
 
         <dependency>
