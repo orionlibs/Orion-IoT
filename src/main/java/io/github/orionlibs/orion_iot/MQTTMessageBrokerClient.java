@@ -7,6 +7,13 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class MQTTMessageBrokerClient
 {
     private MqttClient subscriberClient;
+    public String testVariable;
+
+
+    public MQTTMessageBrokerClient(String testText)
+    {
+        this.testVariable = "hello there " + testText;
+    }
 
 
     public MQTTMessageBrokerClient(String topicToSubscribeTo, String mqttAddressToConnectTo, String mqttClientID) throws MqttException
