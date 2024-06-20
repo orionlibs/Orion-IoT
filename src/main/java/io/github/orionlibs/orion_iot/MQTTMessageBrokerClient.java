@@ -1,43 +1,35 @@
 package io.github.orionlibs.orion_iot;
 
-import java.util.Random;
-import java.util.concurrent.Callable;
-import org.eclipse.paho.client.mqttv3.IMqttClient;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
 
-public class MQTTMessageBrokerClient implements Callable<Void>
+public class MQTTMessageBrokerClient
 {
-    public static final String TOPIC = "topic/test";
-    //private IMqttClient client;
+    private MqttClient subscriberClient;
 
 
-    public MQTTMessageBrokerClient(IMqttClient client)
+    public MQTTMessageBrokerClient(String topicToSubscribeTo, String mqttAddressToConnectTo, String mqttClientID) throws MqttException
     {
-        //this.client = client;
+        subscriberClient = new MqttClient(mqttAddressToConnectTo, mqttClientID);
+        MqttConnectOptions options = new MqttConnectOptions();
+        options.setAutomaticReconnect(true);
+        options.setCleanSession(true);
+        options.setConnectionTimeout(10);
+        subscriberClient.connect(options);
+        subscriberClient.subscribe(topicToSubscribeTo, (topic, msg) -> {
+            String messageRead = new String(msg.getPayload());
+            //assertEquals("Hello World!!", messageRead);
+        });
     }
 
 
-    @Override
-    public Void call() throws Exception
+    public void stopClient() throws MqttException
     {
-        /*if(!client.isConnected())
+        if(subscriberClient.isConnected())
         {
-            System.out.println("[I31] Client not connected.");
-            return null;
+            subscriberClient.disconnect();
+            subscriberClient.close();
         }
-        MqttMessage msg = readEngineTemp();
-        msg.setQos(0);
-        msg.setRetained(true);
-        client.publish(TOPIC, msg);*/
-        return null;
     }
-
-
-    /*private MqttMessage readEngineTemp()
-    {
-        double temp = 80 + rnd.nextDouble() * 20.0;
-        byte[] payload = String.format("T:%04.2f", temp).getBytes();
-        MqttMessage msg = new MqttMessage(payload);
-        return msg;
-    }*/
 }
