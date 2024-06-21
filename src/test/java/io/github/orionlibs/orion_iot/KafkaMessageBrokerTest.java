@@ -26,7 +26,7 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
 //@Execution(ExecutionMode.CONCURRENT)
-public class KafkaMessageBrokerTest
+public class KafkaMessageBrokerTest extends ATest
 {
     /*private static EmbeddedKafkaKraftBroker embeddedKafkaBroker;
     private static KafkaProducer<String, String> producer;

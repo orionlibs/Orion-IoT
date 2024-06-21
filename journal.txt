@@ -1,1 +1,3 @@
+The configuration service is initialised the moment the class is used for the first time. I made the decision to use the system environment properties as the source of custom configuration instead of third-party projects needing to make special calls.
+
 I will use the MQTT (MQ Telemetry Transport) message broker protocol.

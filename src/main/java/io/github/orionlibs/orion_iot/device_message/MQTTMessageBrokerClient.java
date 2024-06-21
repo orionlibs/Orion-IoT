@@ -1,4 +1,4 @@
-package io.github.orionlibs.orion_iot;
+package io.github.orionlibs.orion_iot.device_message;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -19,9 +19,8 @@ public class MQTTMessageBrokerClient implements Closeable
         options.setCleanSession(true);
         options.setConnectionTimeout(10);
         subscriberClient.connect(options);
-        subscriberClient.subscribe(topicToSubscribeTo, (topic, msg) -> {
-            String messageRead = new String(msg.getPayload());
-            //assertEquals("Hello World!!", messageRead);
+        subscriberClient.subscribe(topicToSubscribeTo, (topic, message) -> {
+            String messageRead = new String(message.getPayload());
         });
     }
 

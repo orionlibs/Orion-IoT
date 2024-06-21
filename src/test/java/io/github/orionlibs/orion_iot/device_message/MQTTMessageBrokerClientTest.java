@@ -1,7 +1,8 @@
-package io.github.orionlibs.orion_iot;
+package io.github.orionlibs.orion_iot.device_message;
 
 import static io.netty.util.CharsetUtil.UTF_8;
 
+import io.github.orionlibs.orion_iot.ATest;
 import io.moquette.broker.Server;
 import io.moquette.broker.config.ClasspathResourceLoader;
 import io.moquette.broker.config.IConfig;
@@ -17,13 +18,13 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
 //@Execution(ExecutionMode.CONCURRENT)
-public class MQTTMessageBrokerClientTest
+public class MQTTMessageBrokerClientTest extends ATest
 {
     private static final String TOPIC = "topic/test";
 
 
     @Test
-    public void whenSendSingleMessage_thenSuccess() throws Exception
+    public void whenSendSingleMessage_thenOK() throws Exception
     {
         IResourceLoader classpathLoader = new ClasspathResourceLoader();
         final IConfig classPathConfig = new ResourceLoaderConfig(classpathLoader);

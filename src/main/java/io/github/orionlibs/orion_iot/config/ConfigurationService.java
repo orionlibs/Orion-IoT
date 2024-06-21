@@ -1,13 +1,36 @@
 package io.github.orionlibs.orion_iot.config;
 
 import java.io.IOException;
+import java.util.Properties;
 
 /**
  * provides access to the plugin's config
  */
 public class ConfigurationService
 {
+    private static boolean moduleInitialised;
     private static OrionConfiguration configurationRegistry;
+
+    static
+    {
+        initialise();
+    }
+
+    public static void initialise()
+    {
+        if(!moduleInitialised)
+        {
+            try
+            {
+                registerConfiguration(OrionConfiguration.loadFeatureConfiguration(null));
+            }
+            catch(IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+            moduleInitialised = true;
+        }
+    }
 
 
     /**
@@ -25,12 +48,8 @@ public class ConfigurationService
      * @param key
      * @return
      */
-    public static String getProp(String key) throws IOException
+    public static String getProp(String key)
     {
-        if(configurationRegistry == null)
-        {
-            registerConfiguration(OrionConfiguration.loadFeatureConfiguration(null));
-        }
         return configurationRegistry.getProperty(key);
     }
 
@@ -40,12 +59,8 @@ public class ConfigurationService
      * @param key
      * @return
      */
-    public static Boolean getBooleanProp(String key) throws IOException
+    public static Boolean getBooleanProp(String key)
     {
-        if(configurationRegistry == null)
-        {
-            registerConfiguration(OrionConfiguration.loadFeatureConfiguration(null));
-        }
         return Boolean.parseBoolean(configurationRegistry.getProperty(key));
     }
 
@@ -55,12 +70,18 @@ public class ConfigurationService
      * @param key
      * @param value
      */
-    public static void updateProp(String key, String value) throws IOException
+    public static void updateProp(String key, String value)
     {
-        if(configurationRegistry == null)
-        {
-            registerConfiguration(OrionConfiguration.loadFeatureConfiguration(null));
-        }
         configurationRegistry.updateProp(key, value);
+    }
+
+
+    /**
+     * remaps the given keys to the given values
+     * @param customConfig
+     */
+    public static void updateProps(Properties customConfig)
+    {
+        configurationRegistry.updateProps(customConfig);
     }
 }

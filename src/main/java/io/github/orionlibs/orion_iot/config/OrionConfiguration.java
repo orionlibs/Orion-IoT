@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -45,27 +44,22 @@ public class OrionConfiguration extends Properties
      */
     public void loadDefaultAndCustomConfiguration(InputStream defaultConfiguration, Properties customConfig) throws IOException
     {
-        Properties tempProperties = new Properties();
-        tempProperties.load(defaultConfiguration);
-        Map<String, String> allProperties = new HashMap<>();
-        boolean doesSpringEnvExist = customConfig != null;
-        for(Map.Entry<Object, Object> prop : tempProperties.entrySet())
+        Properties allProperties = new Properties();
+        for(Map.Entry<Object, Object> prop : System.getProperties().entrySet())
         {
             String key = (String)prop.getKey();
-            String value = null;
-            if(doesSpringEnvExist)
-            {
-                value = customConfig.getProperty(key);
-                if(value == null)
-                {
-                    value = (String)prop.getValue();
-                }
-            }
-            else
-            {
-                value = (String)prop.getValue();
-            }
+            String value = (String)prop.getValue();
             allProperties.put(key, value);
+        }
+        allProperties.load(defaultConfiguration);
+        if(customConfig != null)
+        {
+            for(Map.Entry<Object, Object> prop : customConfig.entrySet())
+            {
+                String key = (String)prop.getKey();
+                String value = (String)prop.getValue();
+                allProperties.put(key, value);
+            }
         }
         putAll(allProperties);
     }
@@ -92,5 +86,18 @@ public class OrionConfiguration extends Properties
     public void updateProp(String key, String value)
     {
         put(key, value);
+    }
+
+
+    /**
+     * remaps the given keys to the given values
+     * @param customConfig
+     */
+    public void updateProps(Properties customConfig)
+    {
+        if(customConfig != null)
+        {
+            putAll(customConfig);
+        }
     }
 }

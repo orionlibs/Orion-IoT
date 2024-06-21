@@ -1,33 +1,86 @@
 package io.github.orionlibs.orion_iot;
 
+import io.github.orionlibs.orion_iot.config.ConfigurationService;
+import io.github.orionlibs.orion_iot.database.Database;
+import io.github.orionlibs.orion_iot.database.DatabaseDAO;
+import io.github.orionlibs.orion_iot.database.DatabaseQueriesDAO;
+import io.github.orionlibs.orion_iot.database.DatabaseStaticDAO;
+import io.github.orionlibs.orion_iot.database.DatabaseUpdatesDAO;
+import io.github.orionlibs.orion_iot.database.RealDatabaseConfigurator;
+import io.github.orionlibs.orion_iot.database.TestingDatabaseConfigurator;
+import java.sql.SQLException;
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.JdbcTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
+
 public class Setup
 {
     private static boolean moduleInitialised;
+    private static BasicDataSource dataSource;
 
 
-    public Setup()
+    public static void setup()
     {
         if(!moduleInitialised)
         {
-            //loadDatabasesNames();
-            //Database.geodataDatabaseName = env.getRequiredProperty("database.of.geodata.name");
-            //OneliveryDatabase.businessesDatabaseName = env.getRequiredProperty("database.of.businesses.name");
+            loadActiveProfile();
+            ConfigurationService.initialise();
+            Database.deviceDataDatabaseName = ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name");
+            dataSource = setupDataSource();
+            DatabaseDAO bean = new DatabaseDAO();
+            bean.setDataSource(dataSource);
+            bean.setJDBC(new JdbcTemplate(dataSource));
+            bean.setTransactionalJDBC(new TransactionTemplate(new JdbcTransactionManager(dataSource)));
+            bean.setDatabaseUpdatesDAO(new DatabaseUpdatesDAO());
+            bean.setDatabaseQueriesDAO(new DatabaseQueriesDAO());
+            bean.setDatabaseStaticDAO(new DatabaseStaticDAO());
+            Database.connection = bean;
+            Runtime.getRuntime().addShutdownHook(new Thread(Setup::shutdown));
             moduleInitialised = true;
         }
     }
 
 
-    /*public DataSource dataSource()
+    private static void loadActiveProfile()
     {
-        BasicDataSource dataSource = new BasicDataSource();
-
-        if(OneliveryDomain.testing.equals(Orion.domainName))
+        if(OrionDomain.testing.equals(ConfigurationService.getProp("active.execution.profile")))
         {
-            return new TestingDatabaseConfigurator(env, dataSource).configure();
+            OrionDomain.domainName = OrionDomain.testing;
         }
         else
         {
-            return new RealDatabaseConfigurator(env, dataSource).configure();
+            OrionDomain.domainName = OrionDomain.production;
         }
-    }*/
+    }
+
+
+    public static BasicDataSource setupDataSource()
+    {
+        BasicDataSource dataSource = new BasicDataSource();
+        if(OrionDomain.testing.equals(OrionDomain.domainName))
+        {
+            return new TestingDatabaseConfigurator(dataSource).configure();
+        }
+        else
+        {
+            return new RealDatabaseConfigurator(dataSource).configure();
+        }
+    }
+
+
+    private static void shutdown()
+    {
+        if(dataSource != null)
+        {
+            try
+            {
+                dataSource.close();
+            }
+            catch(SQLException e)
+            {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

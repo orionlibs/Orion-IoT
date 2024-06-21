@@ -1,1 +1,2 @@
 orionlibs.orion-iot.enabled=true
+orionlibs.orion-iot.database.of.iot.device.data.name=iot_device_data

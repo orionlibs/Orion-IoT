@@ -1,1 +1,17 @@
 orionlibs.orion-iot.enabled=true
+orionlibs.orion-iot.database.of.iot.device.data.name=iot_device_data
+
+database.testing.username=root
+database.testing.password=4528193370825
+database.testing.connection.pool.minimum.number.of.idle.connections=1
+database.testing.connection.pool.maximum.number.of.idle.connections=10
+database.testing.maximum.open.prepared.statements.in.pool=100
+database.testing.jdbc.driver.class.name=com.mysql.cj.jdbc.Driver
+database.testing.connection.pool.size=10
+database.testing.connection.pool.prepared.statements=true
+database.testing.autocommit=false
+database.testing.connection.lifetime.in.milliseconds=3600000
+database.testing.test.connection.on.connection.object.borrow=true
+database.testing.test.connection.on.connection.object.create=true
+database.testing.test.connection.on.connection.object.return=true
+database.testing.test.connection.while.idle=true
