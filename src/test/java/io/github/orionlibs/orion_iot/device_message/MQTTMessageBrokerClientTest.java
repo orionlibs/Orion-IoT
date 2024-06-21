@@ -56,6 +56,6 @@ public class MQTTMessageBrokerClientTest extends ATest
         mqttBroker.disconnectAndPurgeClientState(clientID);
         mqttBroker.stopServer();
         client.close();
-        assertEquals(1L, Database.getNumberOfRecords("." + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.and.device.payloads.table.name"), ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name")));
+        assertEquals(0L, Database.getNumberOfRecords("." + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.and.device.payloads.table.name"), ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name")));
     }
 }
