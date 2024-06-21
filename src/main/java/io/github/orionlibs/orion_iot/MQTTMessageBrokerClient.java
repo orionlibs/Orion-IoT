@@ -1,22 +1,17 @@
 package io.github.orionlibs.orion_iot;
 
+import java.io.Closeable;
+import java.io.IOException;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
-public class MQTTMessageBrokerClient
+public class MQTTMessageBrokerClient implements Closeable
 {
     private MqttClient subscriberClient;
-    public String testVariable;
 
 
-    public MQTTMessageBrokerClient(String testText)
-    {
-        this.testVariable = "hello there " + testText;
-    }
-
-
-    public MQTTMessageBrokerClient(String topicToSubscribeTo, String mqttAddressToConnectTo, String mqttClientID) throws MqttException
+    public MQTTMessageBrokerClient(String topicToSubscribeTo, String mqttAddressToConnectTo, String mqttClientID) throws MqttException, IOException
     {
         subscriberClient = new MqttClient(mqttAddressToConnectTo, mqttClientID);
         MqttConnectOptions options = new MqttConnectOptions();
@@ -31,12 +26,26 @@ public class MQTTMessageBrokerClient
     }
 
 
-    public void stopClient() throws MqttException
+    private void stopClient() throws MqttException
     {
         if(subscriberClient.isConnected())
         {
             subscriberClient.disconnect();
             subscriberClient.close();
+        }
+    }
+
+
+    @Override
+    public void close() throws IOException
+    {
+        try
+        {
+            stopClient();
+        }
+        catch(MqttException e)
+        {
+            throw new IOException(e);
         }
     }
 }

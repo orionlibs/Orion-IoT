@@ -43,6 +43,6 @@ public class MQTTMessageBrokerClientTest
         mqttBroker.internalPublish(message, clientID);
         mqttBroker.disconnectAndPurgeClientState(clientID);
         mqttBroker.stopServer();
-        client.stopClient();
+        client.close();
     }
 }
