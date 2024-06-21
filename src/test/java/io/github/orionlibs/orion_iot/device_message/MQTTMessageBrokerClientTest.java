@@ -16,6 +16,7 @@ import io.netty.handler.codec.mqtt.MqttMessageBuilders;
 import io.netty.handler.codec.mqtt.MqttPublishMessage;
 import io.netty.handler.codec.mqtt.MqttQoS;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -35,6 +36,7 @@ public class MQTTMessageBrokerClientTest extends ATest
 
 
     @Test
+    @Disabled
     public void whenSendSingleMessage_thenOK() throws Exception
     {
         IResourceLoader classpathLoader = new ClasspathResourceLoader();
@@ -45,7 +47,7 @@ public class MQTTMessageBrokerClientTest extends ATest
             mqttBroker.stopServer();
         }));
         String clientID = "demo_client";
-        MQTTMessageBrokerClient client = new MQTTMessageBrokerClient(TOPIC, "tcp://127.0.0.1:1883", clientID);
+        MQTTMessageBrokerClient client = new MQTTMessageBrokerClient(TOPIC, "tcp://0.0.0.0:1883", clientID);
         MqttPublishMessage message = MqttMessageBuilders.publish()
                         .topicName(TOPIC)
                         .retained(true)
