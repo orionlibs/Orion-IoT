@@ -1,5 +1,7 @@
 package io.github.orionlibs.orion_iot.config;
 
+import java.io.IOException;
+
 /**
  * provides access to the plugin's config
  */
@@ -23,8 +25,12 @@ public class ConfigurationService
      * @param key
      * @return
      */
-    public static String getProp(String key)
+    public static String getProp(String key) throws IOException
     {
+        if(configurationRegistry == null)
+        {
+            registerConfiguration(OrionConfiguration.loadFeatureConfiguration(null));
+        }
         return configurationRegistry.getProperty(key);
     }
 
@@ -34,8 +40,12 @@ public class ConfigurationService
      * @param key
      * @return
      */
-    public static Boolean getBooleanProp(String key)
+    public static Boolean getBooleanProp(String key) throws IOException
     {
+        if(configurationRegistry == null)
+        {
+            registerConfiguration(OrionConfiguration.loadFeatureConfiguration(null));
+        }
         return Boolean.parseBoolean(configurationRegistry.getProperty(key));
     }
 
@@ -45,8 +55,12 @@ public class ConfigurationService
      * @param key
      * @param value
      */
-    public static void updateProp(String key, String value)
+    public static void updateProp(String key, String value) throws IOException
     {
+        if(configurationRegistry == null)
+        {
+            registerConfiguration(OrionConfiguration.loadFeatureConfiguration(null));
+        }
         configurationRegistry.updateProp(key, value);
     }
 }
