@@ -1,8 +1,11 @@
 package io.github.orionlibs.orion_iot.device_message;
 
 import static io.netty.util.CharsetUtil.UTF_8;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.orionlibs.orion_iot.ATest;
+import io.github.orionlibs.orion_iot.config.ConfigurationService;
+import io.github.orionlibs.orion_iot.database.Database;
 import io.moquette.broker.Server;
 import io.moquette.broker.config.ClasspathResourceLoader;
 import io.moquette.broker.config.IConfig;
@@ -12,6 +15,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.mqtt.MqttMessageBuilders;
 import io.netty.handler.codec.mqtt.MqttPublishMessage;
 import io.netty.handler.codec.mqtt.MqttQoS;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -21,6 +25,13 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 public class MQTTMessageBrokerClientTest extends ATest
 {
     private static final String TOPIC = "topic/test";
+
+
+    @BeforeEach
+    void setUp()
+    {
+        resetAndSeedDatabase();
+    }
 
 
     @Test
@@ -45,5 +56,6 @@ public class MQTTMessageBrokerClientTest extends ATest
         mqttBroker.disconnectAndPurgeClientState(clientID);
         mqttBroker.stopServer();
         client.close();
+        assertEquals(1L, Database.getNumberOfRecords("." + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.and.device.payloads.table.name"), ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name")));
     }
 }

@@ -8,3 +8,12 @@ CREATE TABLE iot_device_data.devices
     deviceID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     deviceName VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+CREATE TABLE iot_device_data.device_payloads
+(
+    devicePayloadID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    topic VARCHAR(1024) NOT NULL,
+    payload VARCHAR(2048) NOT NULL,
+    timestampOfRecord DATETIME NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;

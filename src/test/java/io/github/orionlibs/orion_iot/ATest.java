@@ -7,8 +7,6 @@ import java.io.IOException;
 
 public class ATest
 {
-    private static boolean databaseHasBeenReset = false;
-
     static
     {
         System.setProperty("active.execution.profile", OrionDomain.testing);
@@ -30,48 +28,38 @@ public class ATest
 
     public static void resetTheDatabase()
     {
-        if(!databaseHasBeenReset)
+        try
         {
-            try
-            {
-                Database.runDDL("BEGIN NOT ATOMIC\n" + FileService.convertFileResourceToString("/io/github/orionlibs/orion_iot/configuration/MySQLSchema.sql") + "\nEND");
-            }
-            catch(FileNotFoundException e)
-            {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-            databaseHasBeenReset = true;
+            Database.runDDL("BEGIN NOT ATOMIC\n" + FileService.convertFileResourceToString("/io/github/orionlibs/orion_iot/configuration/MySQLSchema.sql") + "\nEND");
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
 
     public void seedDatabase()
     {
-        if(!databaseHasBeenReset)
-        {
-            resetDatabase();
-        }
+        resetDatabase();
         seedTheDatabase();
     }
 
 
     public static void seedTheDatabase()
     {
-        if(!databaseHasBeenReset)
-        {
-            resetTheDatabase();
-        }
+        resetTheDatabase();
         try
         {
             Database.runDDL("BEGIN NOT ATOMIC\n" + FileService.convertFileResourceToString("/io/github/orionlibs/orion_iot/configuration/MySQLSchema-initialisation.sql") + "\nEND");

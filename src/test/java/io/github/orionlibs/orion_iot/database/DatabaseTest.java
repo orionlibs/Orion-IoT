@@ -3,6 +3,7 @@ package io.github.orionlibs.orion_iot.database;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.orionlibs.orion_iot.ATest;
+import io.github.orionlibs.orion_iot.config.ConfigurationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -22,6 +23,6 @@ public class DatabaseTest extends ATest
     @Test
     public void whenInsertRecordToDatabase_thenOK()
     {
-        assertEquals(2L, Database.getNumberOfRecords(".devices", "iot_device_data"));
+        assertEquals(2L, Database.getNumberOfRecords("." + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.and.devices.table.name"), ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name")));
     }
 }

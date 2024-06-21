@@ -20,6 +20,12 @@ public class Database
     }
 
 
+    public static int saveModel(OrionModel model, String databaseTable, String databaseName)
+    {
+        return SaveModelTask.run(model, databaseTable, databaseName);
+    }
+
+
     public static List<Object> runSQL(String SQLCode, Object modelToUse, Object[] parameters)
     {
         return connection.runSQL(SQLCode, modelToUse, parameters);
