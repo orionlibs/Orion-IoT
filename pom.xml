@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.orionlibs</groupId>
     <artifactId>Orion-IoT</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <name>Orion IoT</name>
     <description>An experimental Internet of Things Java platform</description>
     <url>https://github.com/orionlibs/Orion-IoT</url>
