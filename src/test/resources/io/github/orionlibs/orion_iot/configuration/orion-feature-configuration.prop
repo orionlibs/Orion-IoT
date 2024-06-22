@@ -1,7 +1,4 @@
 orionlibs.orion-iot.enabled=true
-orionlibs.orion-iot.database.of.iot.device.data.name=iot_device_data
-orionlibs.orion-iot.database.of.iot.device.data.and.devices.table.name=devices
-orionlibs.orion-iot.database.of.iot.device.data.and.device.payloads.table.name=device_payloads
 
 database.testing.username=root
 database.testing.password=4528193370825

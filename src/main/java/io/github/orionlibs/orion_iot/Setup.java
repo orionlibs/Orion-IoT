@@ -27,7 +27,6 @@ public class Setup
         {
             loadActiveProfile();
             ConfigurationService.initialise();
-            IoTDatabase.deviceDataDatabaseName = ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name");
             dataSource = setupDataSource();
             DatabaseDAO bean = new DatabaseDAO();
             bean.setDataSource(dataSource);

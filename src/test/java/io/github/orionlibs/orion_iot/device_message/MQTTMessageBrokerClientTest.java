@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.orionlibs.core.data.source.database.Database;
 import io.github.orionlibs.orion_iot.ATest;
-import io.github.orionlibs.orion_iot.config.ConfigurationService;
 import io.github.orionlibs.orion_iot.database.IoTDatabase;
 import io.moquette.broker.Server;
 import io.moquette.broker.config.ClasspathResourceLoader;
@@ -59,6 +58,6 @@ public class MQTTMessageBrokerClientTest extends ATest
         mqttBroker.disconnectAndPurgeClientState(clientID);
         mqttBroker.stopServer();
         client.close();
-        assertEquals(1L, Database.getNumberOfRecords("." + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.and.device.payloads.table.name"), IoTDatabase.deviceDataDatabaseName));
+        assertEquals(1L, Database.getNumberOfRecords(IoTDatabase.tableDevicePayloads, IoTDatabase.deviceDataDatabaseName));
     }
 }

@@ -1,8 +1,6 @@
 orionlibs.orion-iot.enabled=true
-orionlibs.orion-iot.database.of.iot.device.data.name=iot_device_data
-orionlibs.orion-iot.database.of.iot.device.data.and.devices.table.name=devices
-orionlibs.orion-iot.database.of.iot.device.data.and.device.payloads.table.name=device_payloads
 
+database.production.url=jdbc:mysql://localhost:3306?useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&elideSetAutoCommits=true&allowPublicKeyRetrieval=true&autoReconnect=true&allowMultiQueries=true
 database.production.username=root
 database.production.password=4528193370825
 database.production.connection.pool.minimum.number.of.idle.connections=1
