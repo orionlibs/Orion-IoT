@@ -1,7 +1,8 @@
 package io.github.orionlibs.orion_iot.device_message;
 
+import io.github.orionlibs.core.abstraction.OrionModel;
 import io.github.orionlibs.core.calendar.SQLTimestamp;
-import io.github.orionlibs.orion_iot.database.OrionModel;
+import io.github.orionlibs.core.object.CloningService;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,5 +59,19 @@ public class DevicePayloadModel implements OrionModel
     public int hashCode()
     {
         return Objects.hash(devicePayloadID);
+    }
+
+
+    @Override
+    public DevicePayloadModel clone()
+    {
+        return (DevicePayloadModel)CloningService.clone(this);
+    }
+
+
+    @Override
+    public DevicePayloadModel getCopy()
+    {
+        return this.clone();
     }
 }

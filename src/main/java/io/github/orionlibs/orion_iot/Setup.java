@@ -1,11 +1,12 @@
 package io.github.orionlibs.orion_iot;
 
+import io.github.orionlibs.core.data.source.database.Database;
+import io.github.orionlibs.core.data.source.database.DatabaseDAO;
+import io.github.orionlibs.core.data.source.database.DatabaseQueriesDAO;
+import io.github.orionlibs.core.data.source.database.DatabaseStaticDAO;
+import io.github.orionlibs.core.data.source.database.DatabaseUpdatesDAO;
 import io.github.orionlibs.orion_iot.config.ConfigurationService;
-import io.github.orionlibs.orion_iot.database.Database;
-import io.github.orionlibs.orion_iot.database.DatabaseDAO;
-import io.github.orionlibs.orion_iot.database.DatabaseQueriesDAO;
-import io.github.orionlibs.orion_iot.database.DatabaseStaticDAO;
-import io.github.orionlibs.orion_iot.database.DatabaseUpdatesDAO;
+import io.github.orionlibs.orion_iot.database.IoTDatabase;
 import io.github.orionlibs.orion_iot.database.RealDatabaseConfigurator;
 import io.github.orionlibs.orion_iot.database.TestingDatabaseConfigurator;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ public class Setup
         {
             loadActiveProfile();
             ConfigurationService.initialise();
-            Database.deviceDataDatabaseName = ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name");
+            IoTDatabase.deviceDataDatabaseName = ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name");
             dataSource = setupDataSource();
             DatabaseDAO bean = new DatabaseDAO();
             bean.setDataSource(dataSource);
