@@ -1,6 +1,6 @@
 package io.github.orionlibs.orion_iot.database;
 
-import io.github.orionlibs.orion_iot.utils.calendar.SQLTimestamp;
+import io.github.orionlibs.core.calendar.SQLTimestamp;
 import java.beans.PropertyDescriptor;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

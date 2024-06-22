@@ -1,8 +1,8 @@
 package io.github.orionlibs.orion_iot.database;
 
-import io.github.orionlibs.orion_iot.utils.content.Pagination;
-import io.github.orionlibs.orion_iot.utils.reflection.ReflectionMethodAccessService;
-import io.github.orionlibs.orion_iot.utils.strings.StringsService;
+import io.github.orionlibs.core.content.Pagination;
+import io.github.orionlibs.core.reflection.method.access.ReflectionMethodAccessService;
+import io.github.orionlibs.core.string.StringsService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

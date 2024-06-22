@@ -1,7 +1,7 @@
 package io.github.orionlibs.orion_iot.device_message;
 
+import io.github.orionlibs.core.calendar.SQLTimestamp;
 import io.github.orionlibs.orion_iot.database.OrionModel;
-import io.github.orionlibs.orion_iot.utils.calendar.SQLTimestamp;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

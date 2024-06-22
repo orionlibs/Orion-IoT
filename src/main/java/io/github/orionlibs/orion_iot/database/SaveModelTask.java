@@ -1,7 +1,7 @@
 package io.github.orionlibs.orion_iot.database;
 
-import io.github.orionlibs.orion_iot.utils.reflection.ReflectionInstanceVariablesAccessService;
-import io.github.orionlibs.orion_iot.utils.reflection.ReflectionInstanceVariablesRetrievalService;
+import io.github.orionlibs.core.reflection.variable.access.ReflectionInstanceVariablesAccessService;
+import io.github.orionlibs.core.reflection.variable.retrieval.ReflectionInstanceVariablesRetrievalService;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
