@@ -1,4 +1,4 @@
-package io.github.orionlibs.orion_iot.device_message;
+package io.github.orionlibs.orion_iot.device_payload;
 
 import static io.netty.util.CharsetUtil.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -58,6 +58,6 @@ public class MQTTMessageBrokerClientTest extends ATest
         mqttBroker.disconnectAndPurgeClientState(clientID);
         mqttBroker.stopServer();
         client.close();
-        assertEquals(1L, Database.getNumberOfRecords(IoTDatabase.tableDevicePayloads, IoTDatabase.deviceDataDatabaseName));
+        assertEquals(1L, Database.getNumberOfRecords(IoTDatabase.tableDevicePayloads, IoTDatabase.deviceDataDatabase));
     }
 }

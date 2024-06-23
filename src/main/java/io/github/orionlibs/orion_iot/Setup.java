@@ -6,7 +6,7 @@ import io.github.orionlibs.core.data.source.database.DatabaseQueriesDAO;
 import io.github.orionlibs.core.data.source.database.DatabaseStaticDAO;
 import io.github.orionlibs.core.data.source.database.DatabaseUpdatesDAO;
 import io.github.orionlibs.orion_iot.config.ConfigurationService;
-import io.github.orionlibs.orion_iot.database.IoTDatabase;
+import io.github.orionlibs.orion_iot.database.DataSecurityConfigurationLoader;
 import io.github.orionlibs.orion_iot.database.RealDatabaseConfigurator;
 import io.github.orionlibs.orion_iot.database.TestingDatabaseConfigurator;
 import java.sql.SQLException;
@@ -36,6 +36,7 @@ public class Setup
             bean.setDatabaseQueriesDAO(new DatabaseQueriesDAO());
             bean.setDatabaseStaticDAO(new DatabaseStaticDAO());
             Database.connection = bean;
+            DataSecurityConfigurationLoader.load();
             Runtime.getRuntime().addShutdownHook(new Thread(Setup::shutdown));
             moduleInitialised = true;
         }

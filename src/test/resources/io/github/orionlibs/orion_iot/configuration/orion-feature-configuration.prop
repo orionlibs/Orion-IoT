@@ -14,3 +14,8 @@ database.testing.test.connection.on.connection.object.borrow=true
 database.testing.test.connection.on.connection.object.create=true
 database.testing.test.connection.on.connection.object.return=true
 database.testing.test.connection.while.idle=true
+
+data.security.encoding.and.encryption.algorithms.to.use.for.username=BASE64ForString,RSA/ECB/NOPADDING
+data.security.decoding.and.decryption.algorithms.to.use.for.username=RSA/ECB/NOPADDING,BASE64ForString
+data.security.encoding.and.encryption.algorithms.to.use.for.sensitive.user.data=BASE64ForString,RSA/ECB/NOPADDING
+data.security.decoding.and.decryption.algorithms.to.use.for.sensitive.user.data=RSA/ECB/NOPADDING,BASE64ForString

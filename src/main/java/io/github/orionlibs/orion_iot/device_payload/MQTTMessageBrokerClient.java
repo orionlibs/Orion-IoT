@@ -1,4 +1,4 @@
-package io.github.orionlibs.orion_iot.device_message;
+package io.github.orionlibs.orion_iot.device_payload;
 
 import io.github.orionlibs.core.calendar.CalendarService;
 import io.github.orionlibs.core.data.source.database.Database;
@@ -29,7 +29,7 @@ public class MQTTMessageBrokerClient implements Closeable
                                             .payload(messageRead)
                                             .timestampOfRecord(CalendarService.getCurrentDatetimeAsSQLTimestamp())
                                             .build(),
-                            IoTDatabase.tableDevicePayloads, IoTDatabase.deviceDataDatabaseName);
+                            IoTDatabase.tableDevicePayloads, IoTDatabase.deviceDataDatabase);
         });
     }
 

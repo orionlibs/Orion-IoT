@@ -1,7 +1,8 @@
-package io.github.orionlibs.orion_iot.device_message;
+package io.github.orionlibs.orion_iot.device_payload;
 
 import io.github.orionlibs.core.abstraction.OrionModel;
 import io.github.orionlibs.core.calendar.SQLTimestamp;
+import io.github.orionlibs.core.data.source.database.IgnoreForORM;
 import io.github.orionlibs.core.object.CloningService;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import lombok.Setter;
 @Setter
 public class DevicePayloadModel implements OrionModel
 {
-    //@IgnoreForORM
+    @IgnoreForORM
     private Long devicePayloadID;
     private String topic;
     private String payload;
@@ -58,7 +59,7 @@ public class DevicePayloadModel implements OrionModel
     @Override
     public int hashCode()
     {
-        return Objects.hash(devicePayloadID);
+        return Objects.hash(devicePayloadID, topic, payload, timestampOfRecord);
     }
 
 

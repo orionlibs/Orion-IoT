@@ -23,6 +23,6 @@ public class DatabaseTest extends ATest
     @Test
     public void whenInsertRecordToDatabase_thenOK()
     {
-        assertEquals(2L, Database.getNumberOfRecords(IoTDatabase.tableDevices, IoTDatabase.deviceDataDatabaseName));
+        assertEquals(2L, Database.getNumberOfRecords(IoTDatabase.tableDevices, IoTDatabase.deviceDataDatabase));
     }
 }
