@@ -21,6 +21,7 @@ public class DeviceModel implements OrionModel
     @IgnoreForORM
     private Long deviceID;
     private String deviceName;
+    private String connectionURL;
 
 
     public static DeviceModel of()
