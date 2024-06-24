@@ -20,6 +20,7 @@ public class DevicePayloadModel implements OrionModel
 {
     @IgnoreForORM
     private Long devicePayloadID;
+    private Long deviceID;
     private String topic;
     private String payload;
     private SQLTimestamp timestampOfRecord;

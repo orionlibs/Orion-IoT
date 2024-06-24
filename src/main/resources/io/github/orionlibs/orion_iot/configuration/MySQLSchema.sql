@@ -14,6 +14,7 @@ CREATE TABLE iot_device_data.devices
 CREATE TABLE iot_device_data.device_payloads
 (
     devicePayloadID BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    deviceID BIGINT UNSIGNED,
     topic VARCHAR(1024) NOT NULL,
     payload VARCHAR(2048) NOT NULL,
     timestampOfRecord DATETIME NOT NULL
