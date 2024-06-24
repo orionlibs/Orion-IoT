@@ -43,6 +43,18 @@ public class DeviceDAO
     }
 
 
+    public static DeviceModel getByID(Long deviceID)
+    {
+        DeviceModel model = DeviceModel.builder()
+                        .deviceID(deviceID)
+                        .build();
+        return (DeviceModel)Database.getOneModel(model,
+                        IoTDatabase.tableDevices,
+                        IoTDatabase.deviceDataDatabase,
+                        Arrays.asList(IoTDatabase.deviceID));
+    }
+
+
     public static int save(DeviceModel model)
     {
         return Database.saveModel(model,
