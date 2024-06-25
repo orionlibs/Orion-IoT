@@ -26,6 +26,7 @@ public class MQTTMessageBrokerClient implements Closeable
                             .topic(topic)
                             .payload(messageRead)
                             .timestampOfRecord(CalendarService.getCurrentDatetimeAsSQLTimestamp())
+                            .isDeleted(Boolean.FALSE)
                             .build());
         });
     }
