@@ -10,6 +10,7 @@ import io.github.orionlibs.orion_iot.database.DataSecurityConfigurationLoader;
 import io.github.orionlibs.orion_iot.database.RealDatabaseConfigurator;
 import io.github.orionlibs.orion_iot.database.TestingDatabaseConfigurator;
 import java.sql.SQLException;
+import java.util.TimeZone;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.JdbcTransactionManager;
@@ -25,6 +26,7 @@ public class Setup
     {
         if(!moduleInitialised)
         {
+            TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
             loadActiveProfile();
             ConfigurationService.initialise();
             dataSource = setupDataSource();

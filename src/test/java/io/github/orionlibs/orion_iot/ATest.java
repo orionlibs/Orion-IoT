@@ -4,11 +4,13 @@ import io.github.orionlibs.core.data.source.database.Database;
 import io.github.orionlibs.core.file_system.file.FileService;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.TimeZone;
 
 public class ATest
 {
     static
     {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         System.setProperty("active.execution.profile", OrionDomain.testing);
         Setup.setup();
     }

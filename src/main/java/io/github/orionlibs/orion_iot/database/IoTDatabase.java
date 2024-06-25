@@ -9,6 +9,7 @@ public class IoTDatabase
     public static final String tableDevicePayloads = "." + "device_payloads";
     public static final String devicePayloadID = "devicePayloadID";
     public static final String topic = "topic";
+    public static final String isDeleted = "isDeleted";
     public static final String payload = "payload";
     public static final String timestampOfRecord = "timestampOfRecord";
 }
