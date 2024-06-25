@@ -17,5 +17,6 @@ CREATE TABLE iot_device_data.device_payloads
     deviceID BIGINT UNSIGNED,
     topic VARCHAR(1024) NOT NULL,
     payload VARCHAR(2048) NOT NULL,
-    timestampOfRecord DATETIME NOT NULL
+    timestampOfRecord DATETIME NOT NULL,
+    isDeleted BIT(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;

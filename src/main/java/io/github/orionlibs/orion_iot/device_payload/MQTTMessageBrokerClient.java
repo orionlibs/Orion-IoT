@@ -1,8 +1,6 @@
 package io.github.orionlibs.orion_iot.device_payload;
 
 import io.github.orionlibs.core.calendar.CalendarService;
-import io.github.orionlibs.core.data.source.database.Database;
-import io.github.orionlibs.orion_iot.database.IoTDatabase;
 import java.io.Closeable;
 import java.io.IOException;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -24,12 +22,11 @@ public class MQTTMessageBrokerClient implements Closeable
         subscriberClient.connect(options);
         subscriberClient.subscribe(topicToSubscribeTo, (topic, message) -> {
             String messageRead = new String(message.getPayload());
-            Database.saveModel(DevicePayloadModel.builder()
-                                            .topic(topic)
-                                            .payload(messageRead)
-                                            .timestampOfRecord(CalendarService.getCurrentDatetimeAsSQLTimestamp())
-                                            .build(),
-                            IoTDatabase.tableDevicePayloads, IoTDatabase.deviceDataDatabase);
+            DevicePayloadsDAO.save(DevicePayloadModel.builder()
+                            .topic(topic)
+                            .payload(messageRead)
+                            .timestampOfRecord(CalendarService.getCurrentDatetimeAsSQLTimestamp())
+                            .build());
         });
     }
 

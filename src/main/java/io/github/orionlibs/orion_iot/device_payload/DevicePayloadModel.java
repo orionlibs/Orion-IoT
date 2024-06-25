@@ -24,6 +24,7 @@ public class DevicePayloadModel implements OrionModel
     private String topic;
     private String payload;
     private SQLTimestamp timestampOfRecord;
+    private Boolean isDeleted;
 
 
     public static DevicePayloadModel of()
